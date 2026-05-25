@@ -5,160 +5,175 @@ const { MongoClient } = require("mongodb");
 
 const app = express();
 app.use(cors({
-    origin: ["https://heirde.github.io", "http://localhost:3000", "http://127.0.0.1:3000"]
+    origin: ["https://yourusername.github.io", "http://localhost:3000"]
 }));
 app.use(express.json());
 
-const client = new MongoClient(
-  process.env.MONGO_URI ||
-    "mongodb+srv://deninheir31_db_user:MIWuGchDoRxym0qE@umbrella.8xrpvbl.mongodb.net/?appName=Umbrella"
-);
-const dbName = process.env.DB_NAME || "umbrella";
+const client = new MongoClient(process.env.MONGODB_URI);
 let db;
 
 async function connectDB() {
-  await client.connect();
-  db = client.db(dbName);
-  console.log("Connected to MongoDB");
+    try {
+        await client.connect();
+        db = client.db("umbrella");
+        console.log("Connected to MongoDB");
+    } catch (err) {
+        console.error("MongoDB connection failed:", err);
+        process.exit(1);
+    }
 }
 
-connectDB().catch((err) => {
-  console.error("Failed to connect to MongoDB:", err);
-  process.exit(1);
+connectDB();
+
+client.on("close", () => {
+    console.log("MongoDB connection closed — reconnecting");
+    connectDB();
 });
 
-function buildNameQuery(firstName, lastName) {
-  return {
-    firstName: { $regex: new RegExp(`^${firstName}$`, "i") },
-    lastName: { $regex: new RegExp(`^${lastName}$`, "i") },
-  };
-}
+// Middleware to check DB is ready
+app.use((req, res, next) => {
+    if (!db) {
+        return res.status(503).json({ error: "Database not ready" });
+    }
+    next();
+});
 
+// Sign up
 app.post("/api/signup", async (req, res) => {
-  const { firstName, lastName, password } = req.body;
+    try {
+        const { firstName, lastName, password } = req.body;
 
-  if (!firstName || !lastName || !password) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
+        if (!firstName || !lastName || !password) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
 
-  const existing = await db.collection("users").findOne(
-    buildNameQuery(firstName, lastName)
-  );
+        const existing = await db.collection("users").findOne({
+            firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
+            lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+        });
 
-  if (existing) {
-    return res.status(409).json({ error: "Account already exists" });
-  }
+        if (existing) {
+            return res.status(409).json({ error: "Account already exists" });
+        }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
-  await db.collection("users").insertOne({
-    firstName,
-    lastName,
-    password: hashedPassword,
-    role: "guest",
-    clearance: 1,
-  });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await db.collection("users").insertOne({
+            firstName,
+            lastName,
+            password: hashedPassword,
+            role: "guest",
+            clearance: 1
+        });
 
-  res.json({ success: true, firstName, lastName, role: "guest", clearance: 1 });
+        res.json({ success: true, firstName, lastName, role: "guest", clearance: 1 });
+
+    } catch (err) {
+        console.error("Signup error:", err);
+        res.status(500).json({ error: "Server error" });
+    }
 });
 
+// Sign in
 app.post("/api/signin", async (req, res) => {
-  const { firstName, lastName, password } = req.body;
+    try {
+        const { firstName, lastName, password } = req.body;
 
-  if (!firstName || !lastName || !password) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
+        if (!firstName || !lastName || !password) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
 
-  const user = await db
-    .collection("users")
-    .findOne(buildNameQuery(firstName, lastName));
+        const user = await db.collection("users").findOne({
+            firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
+            lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+        });
 
-  if (!user) {
-    return res.status(401).json({ error: "Account not found" });
-  }
+        if (!user) {
+            return res.status(401).json({ error: "Account not found" });
+        }
 
-  const match = await bcrypt.compare(password, user.password);
-  if (!match) {
-    return res.status(401).json({ error: "Incorrect password" });
-  }
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+            return res.status(401).json({ error: "Incorrect password" });
+        }
 
-  res.json({
-    success: true,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    role: user.role,
-    clearance: user.clearance,
-  });
+        res.json({
+            success: true,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role,
+            clearance: user.clearance
+        });
+
+    } catch (err) {
+        console.error("Signin error:", err);
+        res.status(500).json({ error: "Server error" });
+    }
 });
 
+// Get all users (admin only)
 app.get("/api/admin/users", async (req, res) => {
-  const { firstName, lastName } = req.query;
+    try {
+        const { firstName, lastName } = req.query;
 
-  if (!firstName || !lastName) {
-    return res.status(400).json({ error: "Admin credentials are required" });
-  }
+        const requester = await db.collection("users").findOne({
+            firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
+            lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+        });
 
-  const requester = await db
-    .collection("users")
-    .findOne(buildNameQuery(firstName, lastName));
+        if (!requester || requester.clearance < 6) {
+            return res.status(403).json({ error: "Access denied" });
+        }
 
-  if (!requester || requester.clearance < 6) {
-    return res.status(403).json({ error: "Access denied" });
-  }
+        const users = await db.collection("users").find().toArray();
 
-  const users = await db
-    .collection("users")
-    .find({}, { projection: { password: 0 } })
-    .toArray();
+        const safeUsers = users.map(u => ({
+            firstName: u.firstName,
+            lastName: u.lastName,
+            role: u.role,
+            clearance: u.clearance
+        }));
 
-  res.json(users);
+        res.json(safeUsers);
+
+    } catch (err) {
+        console.error("Admin users error:", err);
+        res.status(500).json({ error: "Server error" });
+    }
 });
 
+// Update user role and clearance (admin only)
 app.post("/api/admin/update", async (req, res) => {
-  const {
-    adminFirstName,
-    adminLastName,
-    targetFirstName,
-    targetLastName,
-    role,
-    clearance,
-  } = req.body;
+    try {
+        const { adminFirstName, adminLastName, targetFirstName, targetLastName, role, clearance } = req.body;
 
-  if (
-    !adminFirstName ||
-    !adminLastName ||
-    !targetFirstName ||
-    !targetLastName ||
-    !role ||
-    clearance === undefined
-  ) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
+        const requester = await db.collection("users").findOne({
+            firstName: { $regex: new RegExp(`^${adminFirstName}$`, 'i') },
+            lastName: { $regex: new RegExp(`^${adminLastName}$`, 'i') }
+        });
 
-  const requester = await db
-    .collection("users")
-    .findOne(buildNameQuery(adminFirstName, adminLastName));
+        if (!requester || requester.clearance < 6) {
+            return res.status(403).json({ error: "Access denied" });
+        }
 
-  if (!requester || requester.clearance < 6) {
-    return res.status(403).json({ error: "Access denied" });
-  }
+        const result = await db.collection("users").updateOne(
+            {
+                firstName: { $regex: new RegExp(`^${targetFirstName}$`, 'i') },
+                lastName: { $regex: new RegExp(`^${targetLastName}$`, 'i') }
+            },
+            { $set: { role, clearance: parseInt(clearance) } }
+        );
 
-  const result = await db.collection("users").findOneAndUpdate(
-    buildNameQuery(targetFirstName, targetLastName),
-    {
-      $set: {
-        role,
-        clearance: Number(clearance),
-      },
-    },
-    { returnDocument: "after" }
-  );
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ error: "User not found" });
+        }
 
-  if (!result.value) {
-    return res.status(404).json({ error: "User not found" });
-  }
+        res.json({ success: true });
 
-  res.json({ success: true, user: result.value });
+    } catch (err) {
+        console.error("Admin update error:", err);
+        res.status(500).json({ error: "Server error" });
+    }
 });
 
-const port = process.env.PORT || 3001;
-app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
