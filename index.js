@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const API_BASE_URL = "https://your-backend-url";
     const avatar = document.getElementById("profileAvatar");
     const nameEl = document.getElementById("profileName");
     const loggedInSection = document.getElementById("loggedInSection");
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!first || !last || !pass) return;
 
         try {
-            const response = await fetch("http://localhost:3001/api/signin", {
+const response = await fetch(`${API_BASE_URL}/api/signin`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ firstName: first, lastName: last, password: pass })
@@ -97,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!first || !last || !pass) return;
 
     try {
-        const response = await fetch("https://your-project.railway.app/api/signin", {
+        const response = await fetch(`${API_BASE_URL}/api/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ firstName: first, lastName: last, password: pass })

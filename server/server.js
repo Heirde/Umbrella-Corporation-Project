@@ -5,7 +5,7 @@ const { MongoClient } = require("mongodb");
 
 const app = express();
 app.use(cors({
-    origin: ["https://heirde.github.io/Umbrella-Corporation-Project/", "http://localhost:3000"]
+    origin: ["https://heirde.github.io", "http://localhost:3000", "http://127.0.0.1:3000"]
 }));
 app.use(express.json());
 
