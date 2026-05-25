@@ -15,7 +15,7 @@ let db;
 async function connectDB() {
     try {
         await client.connect();
-        db = client.db("umbrella");
+        db = client.db("Umbrella");
         console.log("Connected to MongoDB");
     } catch (err) {
         console.error("MongoDB connection failed:", err);
