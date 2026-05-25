@@ -3,126 +3,160 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const { MongoClient } = require("mongodb");
 
-const client = new MongoClient("mongodb+srv://deninheir31_db_user:MIWuGchDoRxym0qE@umbrella.8xrpvbl.mongodb.net/?appName=Umbrella");
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const client = new MongoClient(
+  process.env.MONGO_URI ||
+    "mongodb+srv://deninheir31_db_user:MIWuGchDoRxym0qE@umbrella.8xrpvbl.mongodb.net/?appName=Umbrella"
+);
+const dbName = process.env.DB_NAME || "umbrella";
 let db;
 
 async function connectDB() {
-    await client.connect();
-    db = client.db("umbrella");
-    console.log("Connected to MongoDB");
+  await client.connect();
+  db = client.db(dbName);
+  console.log("Connected to MongoDB");
 }
 
-connectDB();
-
-app.post("/api/signup", async (req, res) => {
-    const { firstName, lastName, password } = req.body;
-
-    if (!firstName || !lastName || !password) {
-        return res.status(400).json({ error: "All fields are required" });
-    }
-
-const existing = await db.collection("users").findOne({
-    firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
-    lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+connectDB().catch((err) => {
+  console.error("Failed to connect to MongoDB:", err);
+  process.exit(1);
 });
 
-if (existing) {
-    return res.status(409).json({ error: "Account already exists" });
+function buildNameQuery(firstName, lastName) {
+  return {
+    firstName: { $regex: new RegExp(`^${firstName}$`, "i") },
+    lastName: { $regex: new RegExp(`^${lastName}$`, "i") },
+  };
 }
 
-const hashedPassword = await bcrypt.hash(password, 10);
-await db.collection("users").insertOne({
+app.post("/api/signup", async (req, res) => {
+  const { firstName, lastName, password } = req.body;
+
+  if (!firstName || !lastName || !password) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const existing = await db.collection("users").findOne(
+    buildNameQuery(firstName, lastName)
+  );
+
+  if (existing) {
+    return res.status(409).json({ error: "Account already exists" });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  await db.collection("users").insertOne({
     firstName,
     lastName,
     password: hashedPassword,
     role: "guest",
-    clearance: 1
-});
+    clearance: 1,
+  });
 
-    res.json({ success: true, firstName, lastName, role: "guest", clearance: 1 });
+  res.json({ success: true, firstName, lastName, role: "guest", clearance: 1 });
 });
-
 
 app.post("/api/signin", async (req, res) => {
-    const { firstName, lastName, password } = req.body;
+  const { firstName, lastName, password } = req.body;
 
-    const user = await db.collection("users").findOne({
-        firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
-        lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
-    });
+  if (!firstName || !lastName || !password) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
 
-    if (!user) {
-        return res.status(401).json({ error: "Account not found" });
-    }
+  const user = await db
+    .collection("users")
+    .findOne(buildNameQuery(firstName, lastName));
 
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-        return res.status(401).json({ error: "Incorrect password" });
-    }
+  if (!user) {
+    return res.status(401).json({ error: "Account not found" });
+  }
 
-    res.json({ 
-        success: true, 
-        firstName: user.firstName, 
-        lastName: user.lastName,
-        role: user.role,
-        clearance: user.clearance
-    });
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) {
+    return res.status(401).json({ error: "Incorrect password" });
+  }
 
-    app.get("/api/admin/users", (req, res) => {
-    const { firstName, lastName } = req.query;
-    const users = getUsers();
-
-    const requester = users.find(u =>
-        u.firstName.toLowerCase() === firstName.toLowerCase() &&
-        u.lastName.toLowerCase() === lastName.toLowerCase()
-    );
-
-    if (!requester || requester.clearance < 6) {
-        return res.status(403).json({ error: "Access denied" });
-    }
-
-    // Return users without passwords
-    const safeUsers = users.map(u => ({
-        firstName: u.firstName,
-        lastName: u.lastName,
-        role: u.role,
-        clearance: u.clearance
-    }));
-
-    res.json(safeUsers);
+  res.json({
+    success: true,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    role: user.role,
+    clearance: user.clearance,
+  });
 });
 
-// Update a user's role and clearance (admin only)
+app.get("/api/admin/users", async (req, res) => {
+  const { firstName, lastName } = req.query;
+
+  if (!firstName || !lastName) {
+    return res.status(400).json({ error: "Admin credentials are required" });
+  }
+
+  const requester = await db
+    .collection("users")
+    .findOne(buildNameQuery(firstName, lastName));
+
+  if (!requester || requester.clearance < 6) {
+    return res.status(403).json({ error: "Access denied" });
+  }
+
+  const users = await db
+    .collection("users")
+    .find({}, { projection: { password: 0 } })
+    .toArray();
+
+  res.json(users);
+});
+
 app.post("/api/admin/update", async (req, res) => {
-    const { adminFirstName, adminLastName, targetFirstName, targetLastName, role, clearance } = req.body;
+  const {
+    adminFirstName,
+    adminLastName,
+    targetFirstName,
+    targetLastName,
+    role,
+    clearance,
+  } = req.body;
 
-    const users = getUsers();
+  if (
+    !adminFirstName ||
+    !adminLastName ||
+    !targetFirstName ||
+    !targetLastName ||
+    !role ||
+    clearance === undefined
+  ) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
 
-    const requester = users.find(u =>
-        u.firstName.toLowerCase() === adminFirstName.toLowerCase() &&
-        u.lastName.toLowerCase() === adminLastName.toLowerCase()
-    );
+  const requester = await db
+    .collection("users")
+    .findOne(buildNameQuery(adminFirstName, adminLastName));
 
-    if (!requester || requester.clearance < 6) {
-        return res.status(403).json({ error: "Access denied" });
-    }
+  if (!requester || requester.clearance < 6) {
+    return res.status(403).json({ error: "Access denied" });
+  }
 
-    const targetIndex = users.findIndex(u =>
-        u.firstName.toLowerCase() === targetFirstName.toLowerCase() &&
-        u.lastName.toLowerCase() === targetLastName.toLowerCase()
-    );
+  const result = await db.collection("users").findOneAndUpdate(
+    buildNameQuery(targetFirstName, targetLastName),
+    {
+      $set: {
+        role,
+        clearance: Number(clearance),
+      },
+    },
+    { returnDocument: "after" }
+  );
 
-    if (targetIndex === -1) {
-        return res.status(404).json({ error: "User not found" });
-    }
+  if (!result.value) {
+    return res.status(404).json({ error: "User not found" });
+  }
 
-    users[targetIndex].role = role;
-    users[targetIndex].clearance = parseInt(clearance);
-    saveUsers(users);
-
-    res.json({ success: true });
+  res.json({ success: true, user: result.value });
 });
 
-});
-
-app.listen(3001, () => console.log("Server running on http://localhost:3001"));
+const port = process.env.PORT || 3001;
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
