@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav>
+        <img src="assets/images/Umbrella_Corporation_logo.svg.png" alt="Umbrella Corporation Logo" class="logo">
+        <p class="logo-headline">UMBRELLA CORPORATION</p>
+        <a href="index.html" class="nav-button">Home</a>
+        <a href="about.html" class="nav-button">About Us</a>
+        <a href="research.html" class="nav-button">Research & Development</a>
+        <a href="products.html" class="nav-button">Products</a>
+
+        <div class="profile-wrapper">
+            <button class="profile-btn">
+                <div class="profile-avatar" id="profileAvatar">?</div>
+                <span class="profile-name" id="profileName">Guest</span>
+                <span class="profile-chevron">›</span>
+            </button>
+            <div class="profile-dropdown" id="profileDropdown">
+
+                <div id="loggedInSection">
+                    <div class="user-info">
+                        <span id="userRole">guest</span>
+                        <span id="userClearance">Clearance Level 1</span>
+                    </div>
+                    <hr>
+                    <a href="#">My Account</a>
+                    <a href="#">Security Clearance</a>
+                    <a href="#">Settings</a>
+                    <a href="bow.html" id="bowLink" style="display:none; color: #ff6b6b;">⬛ B.O.W. Portal</a>
+                    <a href="admin.html" id="adminLink" style="display:none; color: #ffaa00;">⚙ Admin Panel</a>
+                    <hr>
+                    <a href="#" class="signout">Sign Out</a>
+                </div>
+
+                <div id="loggedOutSection">
+                    <div class="dropdown-login">
+
+                        <div id="signInForm">
+                            <p class="dropdown-login-title">Sign In</p>
+                            <input type="text" id="dropdownFirstName" placeholder="First name">
+                            <input type="text" id="dropdownLastName" placeholder="Last name">
+                            <input type="password" id="dropdownPassword" placeholder="Password">
+                            <button class="dropdown-login-btn" id="dropdownLoginBtn">Sign In</button>
+                            <p class="dropdown-toggle-text">No account? 
+                                <span id="showSignUp">Register</span>
+                            </p>
+                        </div>
+
+                        <div id="signUpForm" style="display: none;">
+                            <p class="dropdown-login-title">Create Account</p>
+                            <input type="text" id="signUpFirstName" placeholder="First name">
+                            <input type="text" id="signUpLastName" placeholder="Last name">
+                            <input type="password" id="signUpPassword" placeholder="Password">
+                            <button class="dropdown-login-btn" id="dropdownSignUpBtn">Create Account</button>
+                            <p class="dropdown-toggle-text">Have an account? 
+                                <span id="showSignIn">Sign In</span>
+                            </p>
+                        </div>
+
+                    </div>
+</div>
+</div>
+    </nav>
+
+    <div class="content">
+        <div class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="assets/videos/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Pioneering Modern Medicine</p>
+            <h1 class="hero-title">Advancing the health of tomorrow<br>Since 1968</h1>
+            <p class="hero-sub">Through innovative research and development in virology, genetics, Umbrella Corporation continues to push the boundaries of medical science.</p>
+            <div class="hero-btns">
+                <a href="research.html" class="btn btn-primary">Explore Our Research</a>
+                <a href="about.html" class="btn-ghost">About Us</a>
+            </div>
+        </div>
+    </div>
+<section class="divisions">
+    <div class="divisions-header">
+        <p class="divisions-eyebrow">Our Research Divisions</p>
+        <h2 class="divisions-title">Science That Changes Everything</h2>
+        <p class="divisions-sub">Three pioneering divisions working in concert to deliver the next generation of human medicine.</p>
+    </div>
+    <div class="division-cards">
+
+        <div class="div-card">
+            <div class="div-card-top"></div>
+            <div class="div-card-body">
+                <h3 class="div-card-title">Virology</h3>
+                <p class="div-card-text">Umbrella Corporation's virology division stands at the forefront of infectious disease research. Our scientists work tirelessly to identify, isolate, and neutralise emerging viral threats before they reach the global population. Through proprietary compound synthesis and advanced pathogen mapping, we develop antiviral therapies that save millions of lives each year.</p>
+            </div>
+            <div class="div-card-footer">
+                <a href="research.html" class="div-card-link">Learn more →</a>
+                <span class="div-card-badge">Active</span>
+            </div>
+        </div>
+
+        <div class="div-card">
+            <div class="div-card-top"></div>
+            <div class="div-card-body">
+                <h3 class="div-card-title">Genetic Research</h3>
+                <p class="div-card-text">Our genetic research programme represents decades of pioneering work in the field of molecular biology. Utilising cutting-edge gene therapy platforms and next-generation sequencing technology, Umbrella's geneticists are rewriting the possibilities of human medicine.</p>
+            </div>
+            <div class="div-card-footer">
+                <a href="research.html" class="div-card-link">Learn more →</a>
+                <span class="div-card-badge">Active</span>
+            </div>
+        </div>
+
+        <div class="div-card">
+            <div class="div-card-top"></div>
+            <div class="div-card-body">
+                <h3 class="div-card-title">Oncology</h3>
+                <p class="div-card-text">Cancer remains one of humanity's greatest challenges — and Umbrella Corporation is committed to meeting it head on. Our oncology division develops targeted biologic therapies and immunotherapy programmes designed to disrupt tumour growth at a cellular level.</p>
+            </div>
+            <div class="div-card-footer">
+                <a href="research.html" class="div-card-link">Learn more →</a>
+                <span class="div-card-badge">Active</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <h3 class="stat-num">500+</h3>
+            <p class="stat-label">Countries Served</p>
+        </div>
+        <div class="stat">
+            <h3 class="stat-num">10,000+</h3>
+            <p class="stat-label">Employees Worldwide</p>
+        </div>
+        <div class="stat">
+            <h3 class="stat-num">$2.3B+</h3>
+            <p class="stat-label">Annual R&D Investments</p>
+        </div>
+        <div class="stat">
+            <h3 class="stat-num">500+</h3>
+            <p class="stat-label">Active Compounds</p>
+        </div>
+    </div>
+
+    <section class="mission-strip">
+        <div class="mission-content">
+            <p class="mission-eyebrow">Our Purpose</p>
+            <h2 class="mission-text">Our mission is simple — protect human life at any cost.</h2>
+            <p class="mission-sub">Umbrella Corporation is dedicated to pushing the boundaries of science and medicine to create a better future for all.</p>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="news-header">
+            <p class="news-eyebrow">Latest News</p>
+            <h2 class="news-title">Press & Media</h2>
+            <p class="news-sub">The latest updates from Umbrella Corporation.</p>
+        </div>
+
+        <div class="news-cards">
+            <div class="news-card-date">March 15, 2023</div>
+            <div class="news-card-tag">Press Release</div>
+            <h3 class="news-card-title">Umbrella Corporation Announces Breakthrough in Genetic Research</h3>
+            <p class="news-card-text">In a significant development for the field of genetic medicine, Umbrella Corporation has announced a major breakthrough in gene therapy research that could revolutionize treatment options for inherited diseases.</p>
+            <a href="press-release.html" class="news-card-link">Read more →</a>
+        </div>
+
+        <div class="news-cards">
+            <div class="news-card-date">January 10, 2023</div>
+            <div class="news-card-tag">Media Coverage</div>
+            <h3 class="news-card-title">Inside Umbrella Corporation's State-of-the-Art Research Facility</h3>
+            <p class="news-card-text">A recent feature in Science Today magazine offers an exclusive look inside Umbrella Corporation's cutting-edge research facility, showcasing the innovative work being done across our virology, genetic research, and oncology divisions.</p>
+            <a href="media-coverage.html" class="news-card-link">Read more →</a>
+        </div>
+
+        <div class="news-cards">
+            <div class="news-card-date">December 5, 2022</div>
+            <div class="news-card-tag">Event</div>
+            <h3 class="news-card-title">Umbrella Corporation Hosts Annual Science Symposium</h3>
+            <p class="news-card-text">On December 5th, Umbrella Corporation hosted its annual Science Symposium, bringing together leading researchers and industry experts to discuss the latest advancements in medical science and share insights on the future of healthcare.</p>
+            <a href="event.html" class="news-card-link">Read more →</a>
+        </div>
+
+        <div class="news-cards">
+            <div class="news-card-date">November 20, 2022</div>
+            <div class="news-card-tag">Research Update</div>
+            <h3 class="news-card-title">Umbrella Corporation's Oncology Division Achieves Promising Results in Early Trials</h3>
+            <p class="news-card-text">Umbrella Corporation's oncology division has announced promising results from early clinical trials of a new targeted therapy designed to disrupt tumor growth at a cellular level, offering hope for improved treatment options for cancer patients.</p>
+            <a href="research-update.html" class="news-card-link">Read more →</a>
+        </div>
+
+    </section>
+
+    <section class="partners-strip">
+        <p class="partners-eyebrow">Trusted & Accredited By</p>
+        <div class="partners-list">
+            <div class="partners-item">WHO</div>
+            <div class="partners-item">FDA Approved</div>
+            <div class="partners-item">ISO 9001 Certified</div>
+            <div class="partners-item">Geneva Institute of Medicine</div>
+            <div class="partners-item">European Medicines Agency</div>
+            <div class="partners-item">Global Health Council</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="assets/images/Umbrella_Corporation_logo.svg.png" alt="Umbrella Corporation Logo" class="footer-logo">
+                <p class="footer-brand-name">UMBRELLA CORPORATION</p>
+                <p class="footer-tagline">Advancing Human Health Since 1968</p>
+                <p class="footer-address">Umbrella Corporation HQ<br>1 Umbrella Plaza, Raccoon City<br>Arklay County, USA 52839</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-col">
+                    <p class="footer-col-title">Company</p>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="newsroom.html">Newsroom</a>
+                    <a href="careers.html">Careers</a>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-col-title">Research</p>
+                    <a href="research.html">Research & Development</a>
+                    <a href="publications.html">Publications</a>
+                    <a href="clinical-trials.html">Clinical Trials</a>
+                    <a href="pipeline.html">Pipeline</a>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-col-title">Legal</p>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="#" id="hiddenPortal">Compliance</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 Umbrella Corporation. All rights reserved. Umbrella Corporation is a registered trademark.</p>
+            <p class="footer-sub">Raccoon City · Rockfort Island · Madrid · Beijing · London</p>
+        </div>
+        
+    </footer>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
