@@ -4,7 +4,7 @@ body{
     margin: 0px;
 }
 
-body::before{
+body::before {
     content: "";
     position: fixed;
     top: 50%;
@@ -12,7 +12,7 @@ body::before{
     transform: translate(-50%, -50%);
     width: 70vw;
     height: 70vw;
-    background-image: url("assets/images/Umbrella_Corporation_logo.svg.png");
+    background-image: url("/Umbrella-Corporation-Project/assets/images/Umbrella_Corporation_logo.svg.png");
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.03;
