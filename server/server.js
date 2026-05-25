@@ -5,7 +5,7 @@ const { MongoClient } = require("mongodb");
 
 const app = express();
 app.use(cors({
-    origin: ["https://yourusername.github.io", "http://localhost:3000"]
+    origin: ["https://heirde.github.io/Umbrella-Corporation-Project/", "http://localhost:3000"]
 }));
 app.use(express.json());
 
@@ -15,7 +15,7 @@ let db;
 async function connectDB() {
     try {
         await client.connect();
-        db = client.db("umbrella");
+        db = client.db("Umbrella");
         console.log("Connected to MongoDB");
     } catch (err) {
         console.error("MongoDB connection failed:", err);
