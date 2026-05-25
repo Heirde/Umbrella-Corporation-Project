@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     const clearanceSelect = row.querySelectorAll(".admin-select")[1];
 
                     try {
-                        const response = await fetch("http://localhost:3001/api/admin/update", {
+                        const response = await fetch("https://your-project.railway.app/api/signin", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({

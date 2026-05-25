@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!first || !last || !pass) return;
 
     try {
-        const response = await fetch("http://localhost:3001/api/signup", {
+        const response = await fetch("https://your-project.railway.app/api/signin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ firstName: first, lastName: last, password: pass })

@@ -1,22 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
-const fs = require("fs");
-const path = require("path");
+const { MongoClient } = require("mongodb");
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const client = new MongoClient("mongodb+srv://deninheir31_db_user:MIWuGchDoRxym0qE@umbrella.8xrpvbl.mongodb.net/?appName=Umbrella");
+let db;
 
-const USERS_FILE = path.join(__dirname, "users.json");
-
-function getUsers() {
-    return JSON.parse(fs.readFileSync(USERS_FILE, "utf8"));
+async function connectDB() {
+    await client.connect();
+    db = client.db("umbrella");
+    console.log("Connected to MongoDB");
 }
 
-function saveUsers(users) {
-    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
-}
+connectDB();
 
 app.post("/api/signup", async (req, res) => {
     const { firstName, lastName, password } = req.body;
@@ -25,25 +21,23 @@ app.post("/api/signup", async (req, res) => {
         return res.status(400).json({ error: "All fields are required" });
     }
 
-    const users = getUsers();
-    const existing = users.find(u =>
-        u.firstName.toLowerCase() === firstName.toLowerCase() &&
-        u.lastName.toLowerCase() === lastName.toLowerCase()
-    );
+const existing = await db.collection("users").findOne({
+    firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
+    lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+});
 
-    if (existing) {
-        return res.status(409).json({ error: "Account already exists" });
-    }
+if (existing) {
+    return res.status(409).json({ error: "Account already exists" });
+}
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    users.push({ 
-        firstName, 
-        lastName, 
-        password: hashedPassword,
-        role: "guest",      
-        clearance: 1          
-    });
-    saveUsers(users);
+const hashedPassword = await bcrypt.hash(password, 10);
+await db.collection("users").insertOne({
+    firstName,
+    lastName,
+    password: hashedPassword,
+    role: "guest",
+    clearance: 1
+});
 
     res.json({ success: true, firstName, lastName, role: "guest", clearance: 1 });
 });
@@ -52,11 +46,10 @@ app.post("/api/signup", async (req, res) => {
 app.post("/api/signin", async (req, res) => {
     const { firstName, lastName, password } = req.body;
 
-    const users = getUsers();
-    const user = users.find(u =>
-        u.firstName.toLowerCase() === firstName.toLowerCase() &&
-        u.lastName.toLowerCase() === lastName.toLowerCase()
-    );
+    const user = await db.collection("users").findOne({
+        firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
+        lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+    });
 
     if (!user) {
         return res.status(401).json({ error: "Account not found" });
