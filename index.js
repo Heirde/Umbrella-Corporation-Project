@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const API_BASE_URL = "https://your-backend-url";
+    const API_BASE_URL = "https://umbrella-corporation-project-production.up.railway.app";
     const avatar = document.getElementById("profileAvatar");
     const nameEl = document.getElementById("profileName");
     const loggedInSection = document.getElementById("loggedInSection");
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!first || !last || !pass) return;
 
         try {
-const response = await fetch(`${API_BASE_URL}/api/signin`, {
+const response = await fetch(`https://umbrella-corporation-project-production.up.railway.app/api/signin`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ firstName: first, lastName: last, password: pass })
@@ -98,7 +98,7 @@ const response = await fetch(`${API_BASE_URL}/api/signin`, {
     if (!first || !last || !pass) return;
 
     try {
-        const response = await fetch(`${API_BASE_URL}/api/signup`, {
+        const response = await fetch(`https://umbrella-corporation-project-production.up.railway.app/api/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ firstName: first, lastName: last, password: pass })

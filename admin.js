@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const API_BASE_URL = "https://your-backend-url";
+    const API_BASE_URL = "https://umbrella-corporation-project-production.up.railway.app";
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
     const clearance = parseInt(localStorage.getItem("clearance"));
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function loadUsers() {
         try {
             const response = await fetch(
-                `${API_BASE_URL}/api/admin/users?firstName=${firstName}&lastName=${lastName}`
+                `https://umbrella-corporation-project-production.up.railway.app/api/admin/users?firstName=${firstName}&lastName=${lastName}`
             );
             const users = await response.json();
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     const clearanceSelect = row.querySelectorAll(".admin-select")[1];
 
                     try {
-                        const response = await fetch(`${API_BASE_URL}/api/admin/update`, {
+                        const response = await fetch(`https://umbrella-corporation-project-production.up.railway.app/api/admin/update`, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
