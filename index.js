@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!first || !last || !pass) return;
 
         try {
-const response = await fetch(`https://umbrella-corporation-project-production.up.railway.app/api/signin`, {
+const response = await fetch("https://umbrella-corporation-project-production.up.railway.app/api/signin", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ firstName: first, lastName: last, password: pass })
@@ -98,7 +98,7 @@ const response = await fetch(`https://umbrella-corporation-project-production.up
     if (!first || !last || !pass) return;
 
     try {
-        const response = await fetch(`https://umbrella-corporation-project-production.up.railway.app/api/signup`, {
+        const response = await fetch("https://umbrella-corporation-project-production.up.railway.app/api/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ firstName: first, lastName: last, password: pass })
