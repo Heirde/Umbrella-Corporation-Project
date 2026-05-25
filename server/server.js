@@ -4,7 +4,9 @@ const bcrypt = require("bcrypt");
 const { MongoClient } = require("mongodb");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ["https://heirde.github.io/Umbrella-Corporation-Project/", "http://localhost:3000"]
+}));
 app.use(express.json());
 
 const client = new MongoClient(
