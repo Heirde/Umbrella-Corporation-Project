@@ -12,7 +12,7 @@ body::before{
     transform: translate(-50%, -50%);
     width: 70vw;
     height: 70vw;
-    background-image: url("assets/images/Umbrella_Corporation_Logo.svg.png");
+    background-image: url("./assets/images/Umbrella_Corporation_Logo.svg.png");
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.03;
