@@ -40,8 +40,16 @@ document.addEventListener('DOMContentLoaded', function() {
         case "bow-shop":
           results.push('/Umbrella-Corporation-Project/assets/images/Umbrella_Corporation_logo.svg.png')
           results.push($200)
-
-        
+        break;
+            
+        case "denin":
+            results.push(300)
+            results.push("Denin is a 17 year old boy who is a fan of anime and video games. He has a passion for technology and enjoys learning about new advancements in the field. Denin is known for his friendly and outgoing personality, making him popular among his peers. He is also an avid gamer, often spending hours playing his favorite games and streaming his gameplay online. Despite his love for gaming, Denin is also dedicated to his studies and strives to excel in school.");
+            results.push(1500)
+            results.push("Denin's favorite anime include 'Attack on Titan', 'My Hero Academia', and 'One Piece'. He enjoys the action-packed storylines and well-developed characters in these series. In addition to anime, Denin is also a fan of video games such as 'The Legend of Zelda: Breath of the Wild', 'Minecraft', and 'Fortnite'. He appreciates the immersive worlds and engaging gameplay that these games offer.");
+            results.push(1500)
+            results.push("Overall, Denin is a passionate and dedicated individual who enjoys exploring his interests in anime and video games while maintaining a strong focus on his education.");
+        break;
 
 
         case "am":
