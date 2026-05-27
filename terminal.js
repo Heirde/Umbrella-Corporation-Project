@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(300)
         break;
 
-        case "Dr. James Marcus":
+        case "Dr. James Marcus Key - Researcher":
             results.push(300)
             results.push("Dr. James Marcus was a key researcher and one of the most important figures in the development of the Progenitor Virus under Umbrella Corporation. His work laid the foundation for all subsequent viral research, but his obsession with bioweapons ultimately led to his downfall.");
             results.push(2000)
@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(300)
         break;
 
-        case "Oswell E. Spencer":
+        case "Oswell E. Spencer - Founder":
             results.push(300)
             results.push("Oswell E. Spencer was the enigmatic founder and long-time leader of Umbrella Corporation. A visionary with a ruthless streak, Spencer built Umbrella into a global powerhouse through a combination of legitimate business, covert operations, and relentless pursuit of bioweapons research.");
             results.push(2000)
@@ -563,7 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(300)
         break;
 
-        case "Dr. Edward Ashford":
+        case "Dr. Edward Ashford - Key Researcher":
             results.push(300)
             results.push("Dr. Edward Ashford was a key figure in Umbrella's early research and development efforts, particularly in the field of viral weaponry. He was instrumental in the creation of several viral strains and B.O.W.s, and his work had a lasting impact on the company's direction.");
             results.push(2000)
@@ -575,7 +575,7 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(300)
         break;
 
-        case "Dr. Alexander Ashford":
+        case "Dr. Alexander Ashford - Key Scientist":
             results.push(300)
             results.push("Dr. Alexander Ashford was a brilliant but unstable scientist who played a significant role in Umbrella's viral research. He was responsible for the creation of several B.O.W.s and viral strains, and his work was marked by a combination of genius and madness.");
             results.push(2000)
