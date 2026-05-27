@@ -84,6 +84,10 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(300)
             results.push('bow-shop')
             results.push(300)
+            results.push('virus-shop')
+            results.push(300)
+            results.push('organisations')
+            results.push(300)
             results.push('inventory')
             results.push(300)
             results.push('exit')
@@ -278,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         case "virus-shop":
             results.push(300)
-            results.push('<img src="assets/images/progenitor-virus.png" style="max-width: 400px; margin: 10px 0; border: 2px solid #00ff9c;">')
+            results.push('<img src="assets/images/progenitor.png" style="max-width: 400px; margin: 10px 0; border: 2px solid #00ff9c;">')
             results.push(300)
             results.push('Progenitor Virus')
             results.push(300)
@@ -419,6 +423,119 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(300)
             results.push('buy-prototype-virus-e-series-megamycete')
         break;
+
+
+        // =======================  Orgonisation  =========================
+
+
+        case "orginisations":
+            results.push(300)
+            results.push('umbrella-corporation')
+            results.push(300)
+            results.push('blue umbrella corporation')
+            results.push(300)
+            results.push('BSAA')
+            results.push(300)
+            results.push('connections')
+            results.push(300)
+            results.push('DSO')
+            results.push(300)
+            results.push('tricell')
+        break;
+
+
+
+
+            case "umbrella-corporation":
+            results.push(300)
+            results.push("Umbrella Corporation presents itself as a global pharmaceutical and biotech firm, but its real operations are far darker. The public face conceals a layered hierarchy of shell companies and hidden research facilities dedicated to B.O.W. and viral weapon development.");
+            results.push(2000)
+            results.push("Umbrella's true centers of power are secret laboratories, underground testing sites, and corporate branches that exist only to funnel funds and resources into classified bio-weapon programs. Very little of this activity is visible in official records.");
+            results.push(2000)
+            results.push("The company built its reputation through legitimate products, then used that cover to move dangerous assets, recruit covert operatives, and support black market distribution channels. Buyers should assume Umbrella's official narrative is only one layer of its operations.");
+            results.push(2000)
+            results.push("Acquire Umbrella products only with maximum containment and plausible deniability. This organization is not a normal supplier — it is a shadow operator built around secrecy, profit, and the concealment of biological threats.");
+            results.push(2000)
+            results.push('<img src="assets/images/Umbrella_Corporation_logo.svg.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+        case "blue umbrella corporation":
+            results.push(300)
+            results.push("Blue Umbrella Corporation began as a restructuring effort led by former Umbrella employees after the original company's collapse. It presents itself as a transparent biotech firm focused on public health, pharmaceuticals, and responsible research.");
+            results.push(2000)
+            results.push("Its product lines emphasize medical treatments and legitimate pharmaceuticals, but some insiders note that its leadership still carries the same industry experience and experimental mindset that powered Umbrella's darker programs.");
+            results.push(2000)
+            results.push("Buyers should treat Blue Umbrella as a cautious choice: generally safer than Umbrella, yet still operating in a world shaped by the same bioweapon legacy. Verify sources and containment protocols before acquiring any materials.");
+            results.push(2000)
+            results.push('<img src="assets/images/blue-umbrella.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+        case "BSAA":
+            results.push(300)
+            results.push("The Bioterrorism Security Assessment Alliance (BSAA) is an international response organization created to counter bio-organic threats and bioterrorism incidents. It was formed by governments after multiple Umbrella-related outbreaks showed the need for a dedicated global force.");
+            results.push(2000)
+            results.push("BSAA operations are centered on containment, rescue, and investigation rather than weapons development. Its teams deploy to outbreak zones, recover evidence, and coordinate with local military and research units.");
+            results.push(2000)
+            results.push("Connections between BSAA and the black market are minimal in official records. This group is best viewed as a cleanup and security force, not a supplier, though its intelligence can influence what buyers choose to avoid.");
+            results.push(2000)
+            results.push('<img src="assets/images/bsaa.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+        case "connections":
+            results.push(300)
+            results.push("Connections is a shadow broker in the underground B.O.W. economy. It is not a formal corporation so much as a whispered network of anonymous intermediaries, safe houses, and hidden transfer nodes used to move dangerous assets without leaving a visible trail.");
+            results.push(2000)
+            results.push("Umbrella has very little concrete intelligence on the group itself. Most files describe only isolated contacts, unverified transfer routes, and payments routed through layers of front companies. Direct links are intentionally sparse and compartmentalized.");
+            results.push(2000)
+            results.push("What can be said is that Connections appears to specialize in discreet asset movement, covert procurement, and cold introductions between buyers and obscure suppliers. Its real structure is deliberately obscured, and its true leadership remains unknown.");
+            results.push(2000)
+            results.push("Exercise extreme caution. If Connections is involved, expect only partial information, no formal guarantees, and the need for absolute discretion. Verify everything independently and assume the organization will disappear the moment attention grows.");
+            results.push(2000)
+            results.push('<img src="assets/images/connections.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+        case "DSO":
+            results.push(300)
+            results.push("The Department of Strategic Operations (DSO) is a classified national task force that handles extreme biohazard and security incidents. It functions as a government rapid-response unit for cases too sensitive for ordinary military or law enforcement.");
+            results.push(2000)
+            results.push("DSO deployments are typically secret, and its true mandate is closely held by senior government officials. The agency is known to collaborate with military, intelligence, and emergency response services while keeping a low public profile.");
+            results.push(2000)
+            results.push("From Umbrella's perspective, DSO is a threat to covert asset movement rather than a commercial partner. Its presence usually means a site is compromised and buyers should assume increased surveillance and intervention.");
+            results.push(2000)
+            results.push('<img src="assets/images/dso.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+        case "tricell":
+            results.push(300)
+            results.push("TriCell is a private military contractor that became deeply involved in bio-weapon transport, security, and field operations. Its reputation in Umbrella files is that of a mercenary network willing to move hazardous assets for the right price.");
+            results.push(2000)
+            results.push("The company maintains a portfolio of armed security, logistics, and covert insertion services, often working through shell entities and anonymous contracts. Official links to governments are hard to confirm, and much of TriCell's business is conducted off the books.");
+            results.push(2000)
+            results.push("Umbrella intelligence treats TriCell as a practical asset when secrecy matters, but also as a liability due to its unpredictable loyalties and exposure risk. Use only when other channels are burned and expect minimal transparency.");
+            results.push(2000)
+            results.push("Buyers should assume TriCell operates via hidden backchannels, shadow contracts, and third-party intermediaries. Secure every transaction carefully and do not rely on formal documentation or public disclosure.");
+            results.push(2000)
+            results.push('<img src="assets/images/tricell.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         case "am":
             results.push(1200)
