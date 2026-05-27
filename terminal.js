@@ -94,6 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = "";
         break;
 
+        case "exit":
+            results.push(300)
+            results.push("Exiting terminal. Stay safe out there.")
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 2000);
+
         case "bow-shop":
             results.push(300)
             results.push('<img src="assets/images/mr-x.jpg" style="max-width: 400px; margin: 10px 0; border: 2px solid #00ff9c;">')
@@ -209,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case "buy-super-tyrant":
             results.push(300);
             results.push(await performPurchase("super-tyrant", "Super Tyrant", 120000000));
+            
         break;
 
         case "buy-nemesis":
