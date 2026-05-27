@@ -17,11 +17,52 @@ document.addEventListener("DOMContentLoaded", async function () {
                 `https://umbrella-corporation-project-production.up.railway.app/api/admin/users?firstName=${firstName}&lastName=${lastName}`
             );
             const users = await response.json();
-
             const tbody = document.getElementById("userTableBody");
+            const detailsModal = document.getElementById("userDetailsModal");
+            const detailsContent = document.getElementById("detailsContent");
+            const closeDetailsModal = document.getElementById("closeDetailsModal");
+            let loadedUsers = users;
+
+            function formatFieldName(key) {
+                return key
+                    .replace(/([A-Z])/g, ' $1')
+                    .replace(/^./, str => str.toUpperCase())
+                    .replace(/^(First|Last) Name$/, match => match);
+            }
+
+            function showUserDetails(user) {
+                const entries = [
+                    ['Name', `${user.firstName} ${user.lastName}`],
+                    ['Role', user.role],
+                    ['Clearance', `Level ${user.clearance}`],
+                    ...Object.entries(user)
+                        .filter(([key]) => !['firstName', 'lastName', 'role', 'clearance'].includes(key))
+                        .map(([key, value]) => [formatFieldName(key), value])
+                ].filter(([, value]) => value !== undefined && value !== null && value !== '');
+
+                detailsContent.innerHTML = entries.map(([label, value]) => `
+                    <div class="details-item">
+                        <span class="details-label">${label}:</span>
+                        <span class="details-value">${value}</span>
+                    </div>
+                `).join('');
+
+                detailsModal.style.display = 'flex';
+            }
+
+            closeDetailsModal.addEventListener('click', () => {
+                detailsModal.style.display = 'none';
+            });
+
+            detailsModal.addEventListener('click', (event) => {
+                if (event.target === detailsModal) {
+                    detailsModal.style.display = 'none';
+                }
+            });
+
             tbody.innerHTML = "";
 
-            users.forEach(user => {
+            users.forEach((user, index) => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${user.firstName} ${user.lastName}</td>
@@ -43,11 +84,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <button class="admin-save-btn" data-first="${user.firstName}" data-last="${user.lastName}">
                             Save
                         </button>
+                        <button class="admin-details-btn" data-index="${index}">
+                            Details
+                        </button>
                     </td>
                 `;
                 tbody.appendChild(row);
             });
-
 
             document.querySelectorAll(".admin-save-btn").forEach(btn => {
                 btn.addEventListener("click", async function () {
@@ -82,6 +125,15 @@ document.addEventListener("DOMContentLoaded", async function () {
                         }
                     } catch (err) {
                         alert("Could not connect to server");
+                    }
+                });
+            });
+
+            document.querySelectorAll(".admin-details-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const user = loadedUsers[parseInt(this.dataset.index, 10)];
+                    if (user) {
+                        showUserDetails(user);
                     }
                 });
             });

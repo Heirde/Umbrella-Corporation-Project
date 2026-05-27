@@ -3,9 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <title>Research</title>
 </head>
+
 <body>
+        <nav>
+        <img src="assets/images/Umbrella_Corporation_logo.svg.png" alt="Umbrella Corporation Logo" class="logo">
+        <p class="logo-headline">UMBRELLA CORPORATION</p>
+        <a href="index.html" class="nav-button">Home</a>
+        <a href="about.html" class="nav-button">About Us</a>
+        <a href="research.html" class="nav-button">Research & Development</a>
+        <a href="products.html" class="nav-button">Products</a>
+
+        <div class="profile-wrapper">
+            <button class="profile-btn">
+                <div class="profile-avatar" id="profileAvatar">?</div>
+                <span class="profile-name" id="profileName">Guest</span>
+                <span class="profile-chevron">›</span>
+            </button>
+            <div class="profile-dropdown" id="profileDropdown">
+
+                <div id="loggedInSection">
+                    <div class="user-info">
+                        <span id="userRole">guest</span>
+                        <span id="userClearance">Clearance Level 1</span>
+                    </div>
+                    <hr>
+                    <a href="#">My Account</a>
+                    <a href="#">Security Clearance</a>
+                    <a href="#">Settings</a>
+                    <a href="bow.html" id="bowLink" style="display:none; color: #ff6b6b;">⬛ B.O.W. Portal</a>
+                    <a href="admin.html" id="adminLink" style="display:none; color: #ffaa00;">⚙ Admin Panel</a>
+                    <hr>
+                    <a href="#" class="signout">Sign Out</a>
+                </div>
+
+                <div id="loggedOutSection">
+                    <div class="dropdown-login">
+
+                        <div id="signInForm">
+                            <p class="dropdown-login-title">Sign In</p>
+                            <input type="text" id="dropdownFirstName" placeholder="First name">
+                            <input type="text" id="dropdownLastName" placeholder="Last name">
+                            <input type="password" id="dropdownPassword" placeholder="Password">
+                            <button class="dropdown-login-btn" id="dropdownLoginBtn">Sign In</button>
+                            <p class="dropdown-toggle-text">No account? 
+                                <span id="showSignUp">Register</span>
+                            </p>
+                        </div>
+
+                        <div id="signUpForm" style="display: none;">
+                            <p class="dropdown-login-title">Create Account</p>
+                            <input type="text" id="signUpFirstName" placeholder="First name">
+                            <input type="text" id="signUpLastName" placeholder="Last name">
+                            <input type="password" id="signUpPassword" placeholder="Password">
+                            <button class="dropdown-login-btn" id="dropdownSignUpBtn">Create Account</button>
+                            <p class="dropdown-toggle-text">Have an account? 
+                                <span id="showSignIn">Sign In</span>
+                            </p>
+                        </div>
+
+                    </div>
+</div>
+</div>
+    </nav>
+
+    <div class="content">
+
+    <section class="rd-hero">
+        <div class="rd-hero-overlay"></div>
+        <div class="rd-hero-content">
+            <p class="rd-hero-eyebrow">Research & Development</p>
+            <h1 class="rd-hero-title">Pushing the Boundaries<br>of Human Science</h1>
+            <p class="rd-hero-sub">Three decades of pioneering research across virology, genetics, and oncology — driven by a singular commitment to human advancement.</p>
+        </div>
+    </section>
+
+<section class="rd-divisions">
+
+    <div class="rd-division">
+        <div class="rd-division-text">
+            <span class="rd-division-tag">Virology</span>
+            <h2 class="rd-division-title">Viral Research</h2>
+            <p class="rd-division-body">Umbrella Corporation's virology division stands at the forefront of disease research. Our scientists work tirelessly to identify, isolate, and neutralise emerging viral threats before they reach the global population.</p>
+            <p class="rd-division-body">Through proprietary compound synthesis and advanced pathogen mapping, we develop antiviral therapies that save millions of lives each year. Our T-series antigen research program has produced over 40 clinically approved compounds since 1991.</p>
+            <div class="rd-division-stats">
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">40+</span>
+                    <span class="rd-stat-label">Approved Compounds</span>
+                </div>
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">150+</span>
+                    <span class="rd-stat-label">Research Staff</span>
+                </div>
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">$800M</span>
+                    <span class="rd-stat-label">Annual Investment</span>
+                </div>
+            </div>
+        </div>
+        <div class="rd-division-visual">
+            <div class="rd-division-icon">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="40" r="38" stroke="#CC0000" stroke-width="1.5"/>
+                    <circle cx="40" cy="40" r="28" stroke="#CC0000" stroke-width="1" stroke-dasharray="4 4"/>
+                    <circle cx="40" cy="40" r="16" stroke="#CC0000" stroke-width="1.5"/>
+                    <circle cx="40" cy="40" r="5" fill="#CC0000"/>
+                    <line x1="40" y1="2" x2="40" y2="24" stroke="#CC0000" stroke-width="1.5"/>
+                    <line x1="40" y1="56" x2="40" y2="78" stroke="#CC0000" stroke-width="1.5"/>
+                    <line x1="2" y1="40" x2="24" y2="40" stroke="#CC0000" stroke-width="1.5"/>
+                    <line x1="56" y1="40" x2="78" y2="40" stroke="#CC0000" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="rd-division-label">Virology Division</div>
+            <div class="rd-division-sublabel">Raccoon City Research Campus</div>
+        </div>
+    </div>
+
+
+    <div class="rd-division rd-division-reverse">
+        <div class="rd-division-text">
+            <span class="rd-division-tag">Genetics</span>
+            <h2 class="rd-division-title">Genetic Engineering</h2>
+            <p class="rd-division-body">Our genetics division pioneers the future of human potential. We specialise in gene editing, synthetic biology, and regenerative medicine to enhance human capabilities and treat genetic disorders.</p>
+            <p class="rd-division-body">From our groundbreaking CRISPR-based therapies to our work on human augmentation, we are committed to unlocking the full potential of the human genome. Our research has led to over 30 patented technologies and 15 approved treatments for previously incurable conditions.</p>
+            <div class="rd-division-stats">
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">30+</span>
+                    <span class="rd-stat-label">Patented Technologies</span>
+                </div>
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">15</span>
+                    <span class="rd-stat-label">Approved Treatments</span>
+                </div>
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">120+</span>
+                    <span class="rd-stat-label">Research Staff</span>
+                </div>
+            </div>
+        </div>
+        <div class="rd-division-visual">
+            <div class="rd-division-icon">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 10 C20 10 60 20 60 40 C60 60 20 70 20 70" stroke="#CC0000" stroke-width="1.5"/>
+                    <path d="M60 10 C60 10 20 20 20 40 C20 60 60 70 60 70" stroke="#CC0000" stroke-width="1.5"/>
+                    <line x1="27" y1="22" x2="53" y2="26" stroke="#CC0000" stroke-width="1" stroke-dasharray="3 3"/>
+                    <line x1="22" y1="34" x2="58" y2="34" stroke="#CC0000" stroke-width="1" stroke-dasharray="3 3"/>
+                    <line x1="22" y1="46" x2="58" y2="46" stroke="#CC0000" stroke-width="1" stroke-dasharray="3 3"/>
+                    <line x1="27" y1="58" x2="53" y2="54" stroke="#CC0000" stroke-width="1" stroke-dasharray="3 3"/>
+                </svg>
+            </div>
+            <div class="rd-division-label">Genetics Division</div>
+            <div class="rd-division-sublabel">Arklay Mountain Laboratory</div>
+        </div>
+    </div>
+
+
+    <div class="rd-division">
+        <div class="rd-division-text">
+            <span class="rd-division-tag">Oncology</span>
+            <h2 class="rd-division-title">Cancer Research</h2>
+            <p class="rd-division-body">Our oncology division is dedicated to conquering cancer through innovative research and cutting-edge therapies. We focus on immunotherapy, targeted drug development, and early detection technologies to improve patient outcomes.</p>
+            <p class="rd-division-body">With over 25 patented treatments and a robust pipeline of novel therapies, we are making significant strides in the fight against cancer. Our collaborations with leading medical institutions worldwide ensure that our research translates into real-world impact.</p>
+            <div class="rd-division-stats">
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">25+</span>
+                    <span class="rd-stat-label">Patented Treatments</span>
+                </div>
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">10</span>
+                    <span class="rd-stat-label">Approved Therapies</span>
+                </div>
+                <div class="rd-division-stat">
+                    <span class="rd-stat-num">100+</span>
+                    <span class="rd-stat-label">Research Staff</span>
+                </div>
+            </div>
+        </div>
+        <div class="rd-division-visual">
+            <div class="rd-division-icon">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="4" width="72" height="72" rx="4" stroke="#CC0000" stroke-width="1.5"/>
+                    <path d="M20 55 L30 35 L40 45 L50 25 L60 40" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="30" cy="35" r="3" fill="#CC0000"/>
+                    <circle cx="50" cy="25" r="3" fill="#CC0000"/>
+                </svg>
+            </div>
+            <div class="rd-division-label">Oncology Division</div>
+            <div class="rd-division-sublabel">European Research Centre, Madrid</div>
+        </div>
+    </div>
+</section>
+
+<section class="rd-projects">
     
+</section>
+    </div>
+
+    <script src="nav.js"></script>
+
 </body>
 </html>

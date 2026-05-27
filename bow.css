@@ -1,0 +1,26 @@
+body{
+    background-color: #ffffff;
+    padding: 0px;
+    margin: 0px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 70vw;
+    background-image: url("/Umbrella-Corporation-Project/assets/images/Umbrella_Corporation_logo.svg.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.03;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.content{
+    position: relative;
+    z-index: 1;
+}

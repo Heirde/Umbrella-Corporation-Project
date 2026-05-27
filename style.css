@@ -860,12 +860,244 @@ footer{
     cursor: pointer;
 }
 
+.admin-details-btn {
+    background: #222;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.admin-details-btn:hover {
+    background: #444;
+}
+
 .admin-save-btn:hover {
     background: #aa0000;
+}
+
+.admin-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 20px;
+}
+
+.admin-modal-box {
+    width: min(520px, 100%);
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.admin-modal-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.details-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+    align-items: center;
+}
+
+.details-label {
+    font-weight: 700;
+    color: #444;
+}
+
+.details-value {
+    color: #222;
 }
 
 .admin-loading {
     text-align: center;
     color: #999;
     padding: 30px;
+}
+
+/* Research & Development Styles */
+
+.rd-hero {
+    position: relative;
+    height: 50vh;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.rd-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a0000 100%);
+    opacity: 0.95;
+}
+
+.rd-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.rd-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 40px;
+    max-width: 700px;
+}
+
+.rd-hero-eyebrow {
+    font-size: 11px;
+    color: #CC0000;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.rd-hero-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.rd-hero-sub {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+}
+
+
+/* Research & Development Divisions */
+.rd-divisions {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.rd-division {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 60px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.rd-division:last-child {
+    border-bottom: none;
+}
+
+.rd-division-reverse .rd-division-text {
+    order: 2;
+}
+
+.rd-division-reverse .rd-division-visual {
+    order: 1;
+}
+
+.rd-division-tag {
+    font-size: 11px;
+    color: #CC0000;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.rd-division-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.rd-division-body {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+.rd-division-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.rd-division-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rd-stat-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: #CC0000;
+}
+
+.rd-stat-label {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.rd-division-visual {
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.rd-division-icon svg {
+    width: 120px;
+    height: 120px;
+}
+
+.rd-division-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    letter-spacing: 0.04em;
+}
+
+.rd-division-sublabel {
+    font-size: 12px;
+    color: #999;
 }

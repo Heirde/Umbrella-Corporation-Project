@@ -83,12 +83,21 @@
                         <th>Role</th>
                         <th>Clearance</th>
                         <th>Actions</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody id="userTableBody">
-                    <tr><td colspan="4" class="admin-loading">Loading personnel...</td></tr>
+                    <tr><td colspan="5" class="admin-loading">Loading personnel...</td></tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="admin-modal" id="userDetailsModal">
+        <div class="admin-modal-box">
+            <button class="admin-modal-close" id="closeDetailsModal" aria-label="Close user details">×</button>
+            <h2>User Details</h2>
+            <div id="detailsContent"></div>
         </div>
     </div>
 
