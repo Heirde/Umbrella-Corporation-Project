@@ -84,6 +84,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <button class="admin-save-btn" data-first="${user.firstName}" data-last="${user.lastName}">
                             Save
                         </button>
+                    </td>
+                    <td>
                         <button class="admin-details-btn" data-index="${index}">
                             Details
                         </button>
