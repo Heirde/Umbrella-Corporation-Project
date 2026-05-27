@@ -24,3 +24,43 @@ body::before {
     position: relative;
     z-index: 1;
 }
+
+nav{
+    background-color: #CC0000;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 16px;
+    height: 56px;
+    overflow: visible;
+    z-index: 100;
+    position: relative;
+}
+
+.nav-button {
+    display: flex;
+    padding: 10px 20px;
+    margin: 5px;
+    color: white;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.logo {
+    height: 50px;
+    margin-left: 10px;
+}
+
+.logo-headline {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: auto;
+    margin-left: 10px;
+    font-family: 'spaced', sans-serif;
+    white-space: nowrap;
+}
