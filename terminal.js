@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         case "exit":
             results.push(300)
-            window.location.href = "./index.html";
+            window.location.href = "/index.html";
 
         break;
 
