@@ -233,6 +233,36 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(await performPurchase("cerberus", "Cerberus", 30000000));
         break;
 
+        case "buy-progenitor-virus":
+            results.push(300);
+            results.push(await performPurchase("progenitor-virus", "Progenitor Virus", 120000000));
+        break;
+
+        case "buy-t-virus":
+            results.push(300);
+            results.push(await performPurchase("t-virus", "T-Virus", 15000000));
+        break;
+
+        case "buy-t-veronica-virus":
+            results.push(300);
+            results.push(await performPurchase("t-veronica-virus", "T-Veronica Virus", 20000000));
+        break;
+
+        case "buy-g-virus":
+            results.push(300);
+            results.push(await performPurchase("g-virus", "G-Virus", 30000000));
+        break;
+
+        case "buy-t-abyss-virus":
+            results.push(300);
+            results.push(await performPurchase("t-abyss-virus", "T-Abyss Virus", 20000000));
+        break;
+
+        case "buy-prototype-virus-e-series-megamycete":
+            results.push(300);
+            results.push(await performPurchase("prototype-virus-e-series-megamycete", "Prototype Virus (E-Series) Megamycete", 100000000));
+        break;
+
         case "inventory":
             results.push(300);
             const inventoryItems = await fetchInventory();
@@ -246,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // =======================  virus shop  =========================
 
-                case "virus-shop":
+        case "virus-shop":
             results.push(300)
             results.push('<img src="assets/images/progenitor-virus.png" style="max-width: 400px; margin: 10px 0; border: 2px solid #00ff9c;">')
             results.push(300)
@@ -294,26 +324,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
             results.push('========== To Buy ==========')
             results.push(300)
-            results.push('Progenitor Virus')
+            results.push('information-progenitor-virus')
             results.push(300)
-            results.push('T-Virus')
+            results.push('information-t-virus')
             results.push(300)
-            results.push('T-Veronica Virus')
+            results.push('information-t-veronica-virus')
             results.push(300)
-            results.push('G-Virus')
+            results.push('information-g-virus')
             results.push(300)
-            results.push('T-Abyss Virus')
+            results.push('information-t-abyss-virus')
             results.push(300)
-            results.push('T+G-Virus')
-            results.push(300)
-            results.push('G-Virus')
-            results.push(300)
-            results.push('Prototype Virus(E-Series) Megamycete')
-
+            results.push('information-prototype-virus-e-series-megamycete')
+        break;
 
         // =======================  INFO  =========================
 
-        break;
+
 
             case "information-progenitor-virus":
             results.push(300)
@@ -323,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(2000)
             results.push("Buyers should exercise extreme caution when handling the Progenitor Virus, as it can lead to catastrophic outbreaks if not properly contained. It is intended for advanced research applications only.");
             results.push(2000)
-            results.push('<img src="assets/images/.jpg" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push('<img src="assets/images/progenitor.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
             results.push('===   buy-progenitor-virus    === ')
 
@@ -337,9 +363,9 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(2000)
             results.push("Buyers should be aware of the extreme risks associated with the T-Virus, including potential outbreaks and uncontrollable mutations. It is intended for use in highly secure environments with strict containment protocols.");
             results.push(2000)
-            results.push('<img src="assets/images/nemesis.jpg" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push('<img src="assets/images/t-virus.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
-            results.push('===   buy-Nemesis    === ')
+            results.push('===   buy-t-virus    === ')
         break;
 
         case "information-t-veronica-virus":
@@ -350,70 +376,49 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(2000)
             results.push("Buyers should exercise extreme caution when handling the T-Veronica Virus, as it can lead to catastrophic outbreaks if not properly contained. It is intended for use in highly secure environments with strict containment protocols.");
             results.push(2000)
-            results.push('<img src="assets/images/licker.jfif" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push('<img src="assets/images/t-veronica.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
-            results.push('===   buy-Licker    === ')
+            results.push('===   buy-t-veronica-virus    === ')
         break;
 
-        case "information-cerberus":
+        case "information-g-virus":
             results.push(300)
-            results.push("Cerberus is Umbrella's hybrid canine B.O.W. produced for perimeter patrol and assault support. It combines enhanced speed, strength, and aggression with pack coordination programming.");
+            results.push("The G-Virus is a highly unstable and aggressive virus developed by Umbrella Corporation. It causes rapid cellular mutation, leading to the transformation of infected hosts into powerful, bio-organic weapons. The virus is transmitted through direct contact and has a high mortality rate.");
             results.push(2000)
-            results.push("Widely issued for facility defense, Cerberus units are effective at chasing down multiple intruders and enforcing secure boundaries. Their heightened senses and obedience to handler commands make them a reliable force multiplier.");
+            results.push("This virus is known for its role in the events of Raccoon City and is considered one of Umbrella's most dangerous creations. It is primarily used for offensive operations and is not recommended for defensive purposes due to its uncontrollable nature.");
             results.push(2000)
-            results.push("A cost-effective option in the black market catalogue, Cerberus is recommended for defensive deployments and rapid response teams seeking a durable, proven attack asset.");
+            results.push("Buyers should exercise extreme caution when handling the G-Virus, as it can lead to catastrophic outbreaks if not properly contained. It is intended for use in highly secure environments with strict containment protocols.");
             results.push(2000)
-            results.push('<img src="assets/images/cerberus.jpg" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push('<img src="assets/images/g-virus.jpg" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
-            results.push('buy-Cerberus')
+            results.push('===   buy-g-virus    === ')
         break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-        // =======================  buy =========================
-
-        case "buy-super-tyrant":
-            results.push(300);
-            results.push(await performPurchase("super-tyrant", "Super Tyrant", 120000000));
-            
+        case "information-t-abyss-virus":
+            results.push(300)
+            results.push("The T-Abyss Virus is a highly aggressive and fast-acting virus developed by Umbrella Corporation. It causes rapid cellular mutation, leading to the transformation of infected hosts into powerful, bio-organic weapons. The virus is transmitted through direct contact and has a high mortality rate.");
+            results.push(2000)
+            results.push("This virus is known for its role in the events of Rockfort Island and is considered one of Umbrella's most dangerous creations. It is primarily used for offensive operations and is not recommended for defensive purposes due to its uncontrollable nature.");
+            results.push(2000)
+            results.push("Buyers should exercise extreme caution when handling the T-Abyss Virus, as it can lead to catastrophic outbreaks if not properly contained. It is intended for use in highly secure environments with strict containment protocols.");
+            results.push(2000)
+            results.push('<img src="assets/images/t-abyss.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+            results.push('buy-t-abyss-virus')
         break;
-
-        case "buy-nemesis":
-            results.push(300);
-            results.push(await performPurchase("nemesis", "Nemesis", 0));
-        break;
-
-        case "buy-licker":
-            results.push(300);
-            results.push(await performPurchase("licker", "Licker", 14000000));
-        break;
-
-        case "buy-cerberus":
-            results.push(300);
-            results.push(await performPurchase("cerberus", "Cerberus", 30000000));
-        break;
-
-        case "inventory":
-            results.push(300);
-            const inventoryItems = await fetchInventory();
-            inventoryItems.forEach(item => {
-                results.push(item);
-                results.push(300);
-            });
-        break;
-
-
         
+        case "information-prototype-virus-e-series-megamycete":
+            results.push(300)
+            results.push("The Prototype Virus (E-Series) Megamycete is a highly experimental and unstable virus developed by Umbrella Corporation. It is derived from the Progenitor Virus and has been engineered to produce rapid cellular mutation, leading to the transformation of infected hosts into powerful, bio-organic weapons. The virus is transmitted through direct contact and has a high mortality rate.");
+            results.push(2000)
+            results.push("This virus is considered one of Umbrella's most dangerous creations and is intended for use in highly secure environments with strict containment protocols. It is not recommended for field deployment due to its unpredictable nature and potential for catastrophic outbreaks.");
+            results.push(2000)
+            results.push("Buyers should exercise extreme caution when handling the Prototype Virus (E-Series) Megamycete, as it can lead to uncontrollable mutations and widespread contamination if not properly contained. It is intended for advanced research applications only.");
+            results.push(2000)
+            results.push('<img src="assets/images/megamycete.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+            results.push('buy-prototype-virus-e-series-megamycete')
+        break;
 
         case "am":
             results.push(1200)
