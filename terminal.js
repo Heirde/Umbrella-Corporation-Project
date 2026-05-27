@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push('$20,000,000')
 
             results.push(300)
-            results.push('<img src="assets/images/cerberus.jpg" style="max-width:400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push('<img src="assets/images/megamycete.png" style="max-width:400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
             results.push('Prototype Virus(E-Series) Megamycete')
             results.push(300)
