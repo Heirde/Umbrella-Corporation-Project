@@ -96,10 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         case "exit":
             results.push(300)
-            results.push("Exiting terminal. Stay safe out there.")
-            setTimeout(() => {
-                window.location.href = "index.html";
-            }, 2000);
+            window.location.href = "./index.html";
+
+        break;
 
         case "bow-shop":
             results.push(300)
