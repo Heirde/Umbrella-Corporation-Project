@@ -1,66 +1,59 @@
-body{
-    background-color: #ffffff;
-    padding: 0px;
-    margin: 0px;
+#terminal{
+    width:80px;
+    margin:40px auto;
+    padding:20px;
+    border:2px dashed #00ff9c;
+    height:680;
+    overflow: auto;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70vw;
-    height: 70vw;
-    background-image: url("/Umbrella-Corporation-Project/assets/images/Umbrella_Corporation_logo.svg.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    opacity: 0.03;
-    z-index: 0;
-    pointer-events: none;
+.terminal{
+    color:#00ff9c;
+}
+.input-line{ 
+    display:flex;
+}
+input{
+    background-color: transparent;
+    border: none;
+    color:#00ff9c;
+    outline:none;
+    width: 100%;
+    font-family: monospace;
 }
 
-.content{
-    position: relative;
-    z-index: 1;
+.logo{
+    font-size: 2px;
 }
 
-nav{
-    background-color: #CC0000;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 16px;
-    height: 56px;
-    overflow: visible;
-    z-index: 100;
-    position: relative;
-}
 
-.nav-button {
-    display: flex;
-    padding: 10px 20px;
-    margin: 5px;
-    color: white;
-    text-decoration: none;
-    color: white;
-}
 
-.nav-button:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-}
 
-.logo {
-    height: 50px;
-    margin-left: 10px;
-}
 
-.logo-headline {
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: auto;
-    margin-left: 10px;
-    font-family: 'spaced', sans-serif;
-    white-space: nowrap;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
