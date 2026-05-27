@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case "exit":
             results.push("Exiting terminal...")
             results.push(1000)
-            window.location.href = "https://heirde.github.io/Umbrella-Corporation-Project/";
+            window.location.href = "./index.html";
         break;
 
         case "bow-shop":
