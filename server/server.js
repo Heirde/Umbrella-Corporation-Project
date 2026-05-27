@@ -62,10 +62,11 @@ app.post("/api/signup", async (req, res) => {
             lastName,
             password: hashedPassword,
             role: "guest",
-            clearance: 1
+            clearance: 1,
+            ownedBOWs: []
         });
 
-        res.json({ success: true, firstName, lastName, role: "guest", clearance: 1 });
+        res.json({ success: true, firstName, lastName, role: "guest", clearance: 1, ownedBOWs: [] });
 
     } catch (err) {
         console.error("Signup error:", err);
@@ -101,11 +102,77 @@ app.post("/api/signin", async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             role: user.role,
-            clearance: user.clearance
+            clearance: user.clearance,
+            ownedBOWs: user.ownedBOWs || []
         });
 
     } catch (err) {
         console.error("Signin error:", err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+// Record a B.O.W. purchase for a signed-in user
+app.post("/api/purchase", async (req, res) => {
+    try {
+        const { firstName, lastName, bowId, bowLabel, price } = req.body;
+
+        if (!firstName || !lastName || !bowId || !bowLabel) {
+            return res.status(400).json({ error: "Missing purchase data" });
+        }
+
+        const purchaseEntry = {
+            sku: bowId,
+            label: bowLabel,
+            price: price || 0,
+            purchasedAt: new Date()
+        };
+
+        const result = await db.collection("users").updateOne(
+            {
+                firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
+                lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+            },
+            {
+                $addToSet: { ownedBOWs: purchaseEntry }
+            }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json({ success: true, purchased: purchaseEntry });
+    } catch (err) {
+        console.error("Purchase error:", err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+// Retrieve the current user's owned B.O.W. inventory
+app.get("/api/inventory", async (req, res) => {
+    try {
+        const { firstName, lastName } = req.query;
+
+        if (!firstName || !lastName) {
+            return res.status(400).json({ error: "Missing user identity" });
+        }
+
+        const user = await db.collection("users").findOne(
+            {
+                firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
+                lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+            },
+            { projection: { ownedBOWs: 1 } }
+        );
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json({ ownedBOWs: user.ownedBOWs || [] });
+    } catch (err) {
+        console.error("Inventory error:", err);
         res.status(500).json({ error: "Server error" });
     }
 });

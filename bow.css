@@ -2,16 +2,17 @@ body{
     background-color: black;
     color:#00ff9c;
     font-family: monospace;
+
 }
 #terminal{
-    width:80px;
+    width:90%;
     margin:40px auto;
     padding:20px;
     border:2px dashed #00ff9c;
-    height:100%;
+    height:450px;
     overflow: auto;
+    font-size: 16px;
 }
-
 
 .terminal{
     color:#00ff9c;
@@ -26,11 +27,12 @@ input{
     outline:none;
     width: 100%;
     font-family: monospace;
+    font-size: 16px;
 }
 
 .logo{
-    font-size: 2px;
-
+    font-size: 3px;
+    margin-left: 950px;
 }
 
 
