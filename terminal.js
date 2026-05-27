@@ -95,9 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
         break;
 
         case "exit":
-            results.push(300)
+            results.push("Exiting terminal...")
+            results.push(1000)
             window.location.href = "/index.html";
-
         break;
 
         case "bow-shop":
