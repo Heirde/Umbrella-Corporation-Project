@@ -347,9 +347,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             case "information-progenitor-virus":
             results.push(300)
-            results.push("The Progenitor Virus, also known as the Mother Virus, is the original viral strain developed by Umbrella Corporation. It serves as the genetic basis for all subsequent B.O.W. viruses and is characterized by its ability to rapidly mutate and adapt to host organisms.");
+            results.push("The Progenitor Virus, also known as the Mother Virus, is the original viral strain discovered within the progenitor flower in Africa. It was weaponized by Umbrella Corporation to serve as the genetic basis for all subsequent B.O.W. viruses and is characterized by its ability to rapidly mutate and adapt to host organisms.");
             results.push(2000)
-            results.push("This virus is highly unstable and requires specialized containment protocols. It is primarily used for research and development purposes within Umbrella's secretive laboratories, and is not recommended for field deployment due to its unpredictable nature.");
+            results.push("This virus is highly unstable and requires specialized containment protocols. It is extremely difficult to control and prone to unexpected mutations. It is primarily used for research and development purposes within Umbrella's secretive laboratories, and is not recommended for field deployment due to its unpredictable nature.");
             results.push(2000)
             results.push("Buyers should exercise extreme caution when handling the Progenitor Virus, as it can lead to catastrophic outbreaks if not properly contained. It is intended for advanced research applications only.");
             results.push(2000)
@@ -361,11 +361,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         case "information-t-virus":
             results.push(300)
-            results.push("The T-Virus is a highly contagious and mutagenic virus developed by Umbrella Corporation for use in bioweapons. It causes rapid cellular mutation, leading to the transformation of infected hosts into aggressive, zombie-like creatures. The virus can be transmitted through bodily fluids and has a high mortality rate.");
+            results.push("The T-Virus is a highly contagious and mutagenic virus derived from the Progenitor Virus and engineered by Umbrella Corporation for widespread bioweapon deployment. It causes rapid cellular mutation, leading to the transformation of infected hosts into aggressive, zombie-like creatures. The virus can be transmitted through bodily fluids and has a devastating mortality rate.");
             results.push(2000)
-            results.push("This virus is widely known for its role in the Raccoon City outbreak and is considered one of Umbrella's most infamous creations. It is primarily used for offensive operations and is not recommended for defensive purposes due to its uncontrollable nature.");
+            results.push("This virus is widely known for its catastrophic role in the Raccoon City outbreak and is considered one of Umbrella's most infamous and effective creations. It has been used as the basis for numerous B.O.W. variants and is highly resistant to environmental degradation, making it ideal for large-scale deployment.");
             results.push(2000)
-            results.push("Buyers should be aware of the extreme risks associated with the T-Virus, including potential outbreaks and uncontrollable mutations. It is intended for use in highly secure environments with strict containment protocols.");
+            results.push("Buyers should be aware of the extreme risks associated with the T-Virus, including potential outbreaks, uncontrollable mutations, and exponential transmission. It is intended for use in highly secure environments with strict containment protocols.");
             results.push(2000)
             results.push('<img src="assets/images/t-virus.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
@@ -374,11 +374,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         case "information-t-veronica-virus":
             results.push(300)
-            results.push("The T-Veronica Virus is a highly aggressive and fast-acting virus developed by Umbrella Corporation. It causes rapid cellular mutation, leading to the transformation of infected hosts into powerful, bio-organic weapons. The virus is transmitted through direct contact and has a high mortality rate.");
+            results.push("The T-Veronica Virus is a highly aggressive and unstable virus derived from the Progenitor Virus and engineered at Umbrella's Rockfort Island facility. It causes rapid and extreme cellular mutation, leading to the transformation of infected hosts into highly intelligent and powerful bio-organic weapons. The virus requires direct blood contact for transmission.");
             results.push(2000)
-            results.push("This virus is known for its role in the events of Rockfort Island and is considered one of Umbrella's most dangerous creations. It is primarily used for offensive operations and is not recommended for defensive purposes due to its uncontrollable nature.");
+            results.push("This virus is considered more dangerous than the T-Virus due to its ability to enhance cognitive function while amplifying aggression. The Rockfort Island incident demonstrated its catastrophic potential when containment protocols failed. T-Veronica creates exponentially more dangerous B.O.W. variants.");
             results.push(2000)
-            results.push("Buyers should exercise extreme caution when handling the T-Veronica Virus, as it can lead to catastrophic outbreaks if not properly contained. It is intended for use in highly secure environments with strict containment protocols.");
+            results.push("Buyers should exercise extreme caution when handling the T-Veronica Virus. Its intelligence-enhancing properties make resulting creatures far more lethal than standard T-Virus mutations. Containment is significantly more difficult and it is intended for use only by highly trained operators in maximum-security environments.");
             results.push(2000)
             results.push('<img src="assets/images/t-veronica.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
@@ -387,11 +387,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         case "information-g-virus":
             results.push(300)
-            results.push("The G-Virus is a highly unstable and aggressive virus developed by Umbrella Corporation. It causes rapid cellular mutation, leading to the transformation of infected hosts into powerful, bio-organic weapons. The virus is transmitted through direct contact and has a high mortality rate.");
+            results.push("The G-Virus is a highly unstable and aggressive virus developed by Dr. William Birkin at Umbrella Corporation. It causes extreme cellular expansion and mutation, leading to the transformation of infected hosts into towering, nearly unstoppable bio-organic weapons. The virus requires direct contact with contaminated tissue for transmission.");
             results.push(2000)
-            results.push("This virus is known for its role in the events of Raccoon City and is considered one of Umbrella's most dangerous creations. It is primarily used for offensive operations and is not recommended for defensive purposes due to its uncontrollable nature.");
+            results.push("This virus is widely considered more lethal and harder to control than the T-Virus. Its role in the Raccoon City outbreak demonstrated its catastrophic potential, producing mutations capable of consuming and adapting to organic matter. The resulting creatures grow progressively larger and more dangerous.");
             results.push(2000)
-            results.push("Buyers should exercise extreme caution when handling the G-Virus, as it can lead to catastrophic outbreaks if not properly contained. It is intended for use in highly secure environments with strict containment protocols.");
+            results.push("Buyers should exercise extreme caution when handling the G-Virus, as infected hosts become increasingly hostile and unpredictable. It can lead to geometric escalation of threats if containment fails. It is intended for use only by experienced operatives in maximum-security environments with multiple fail-safes.");
             results.push(2000)
             results.push('<img src="assets/images/g-virus.jpg" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
@@ -400,9 +400,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         case "information-t-abyss-virus":
             results.push(300)
-            results.push("The T-Abyss Virus is a highly aggressive and fast-acting virus developed by Umbrella Corporation. It causes rapid cellular mutation, leading to the transformation of infected hosts into powerful, bio-organic weapons. The virus is transmitted through direct contact and has a high mortality rate.");
+            results.push("The T-Abyss Virus is a highly aggressive and fast-acting virus developed by Umbrella Corporation for aquatic bioweapon applications. It causes rapid cellular mutation, leading to the transformation of infected hosts into powerful, bio-organic weapons. The virus is transmitted through direct contact and has a high mortality rate.");
             results.push(2000)
-            results.push("This virus is known for its role in the events of Rockfort Island and is considered one of Umbrella's most dangerous creations. It is primarily used for offensive operations and is not recommended for defensive purposes due to its uncontrollable nature.");
+            results.push("This virus is known for its role in aquatic research operations and is considered one of Umbrella's most dangerous creations. It is primarily used for offshore defense and oceanic offensive operations. Due to its uncontrollable nature and affinity for water-based transmission, it is not recommended for terrestrial deployment.");
             results.push(2000)
             results.push("Buyers should exercise extreme caution when handling the T-Abyss Virus, as it can lead to catastrophic outbreaks if not properly contained. It is intended for use in highly secure environments with strict containment protocols.");
             results.push(2000)
@@ -413,11 +413,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         case "information-prototype-virus-e-series-megamycete":
             results.push(300)
-            results.push("The Prototype Virus (E-Series) Megamycete is a highly experimental and unstable virus developed by Umbrella Corporation. It is derived from the Progenitor Virus and has been engineered to produce rapid cellular mutation, leading to the transformation of infected hosts into powerful, bio-organic weapons. The virus is transmitted through direct contact and has a high mortality rate.");
+            results.push("The Megamycete is not a virus but a parasitic fungal organism that originated from an ancient mold discovered in eastern Europe. It serves as the biological foundation for mutations and transformations, fundamentally different from conventional viral weaponry. The organism spreads through spore transmission and parasitic infection.");
             results.push(2000)
-            results.push("This virus is considered one of Umbrella's most dangerous creations and is intended for use in highly secure environments with strict containment protocols. It is not recommended for field deployment due to its unpredictable nature and potential for catastrophic outbreaks.");
+            results.push("Unlike viral B.O.W.s, Megamycete-infected hosts retain elevated intelligence and retain vestiges of their original personality, making them far more dangerous. The organism integrates at a cellular level and provides enhanced physical capabilities, regenerative properties, and extended lifespans. It was used experimentally by Umbrella successor organizations.");
             results.push(2000)
-            results.push("Buyers should exercise extreme caution when handling the Prototype Virus (E-Series) Megamycete, as it can lead to uncontrollable mutations and widespread contamination if not properly contained. It is intended for advanced research applications only.");
+            results.push("Buyers should understand that Megamycete is fundamentally different from standard bioweapons - it creates semi-sentient, durable assets rather than disposable soldiers. Its parasitic nature makes it extremely difficult to control or eliminate once established. Handle only with expertise in parasitic organism containment and expect significantly higher operational complexity.");
             results.push(2000)
             results.push('<img src="assets/images/megamycete.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
             results.push(300)
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // =======================  Orgonisation  =========================
 
 
-        case "orginisations":
+        case "organisations":
             results.push(300)
             results.push('umbrella-corporation')
             results.push(300)
@@ -524,30 +524,75 @@ document.addEventListener('DOMContentLoaded', function() {
             results.push(300)
         break;
 
+              // =======================  founders  =========================
+
+        case "founders":
+            results.push('========== Founders ==========')
+            results.push(300)
+            results.push('Oswell E. Spencer - Founder')
+            results.push(300)
+            results.push('Dr. James Marcus - Key Researcher')
+            results.push(300)
+            results.push('Dr. Edward Ashford - Key Researcher')
+            results.push(300)
+            results.push('Dr. Alexander Ashford - Key Scientist')
+            results.push(300)
+        break;
+
+        case "Dr. James Marcus":
+            results.push(300)
+            results.push("Dr. James Marcus was a key researcher and one of the most important figures in the development of the Progenitor Virus under Umbrella Corporation. His work laid the foundation for all subsequent viral research, but his obsession with bioweapons ultimately led to his downfall.");
+            results.push(2000)
+            results.push("Marcus's research was groundbreaking but ethically compromised, and his methods were often reckless. He was eventually betrayed by his colleagues and met a grim end, but his legacy lives on in the viruses and B.O.W.s that continue to shape the black market.");
+            results.push(2000)
+            results.push("Buyers should view Marcus as a cautionary tale of unchecked ambition in bioweapons research. His contributions are significant, but his story is also a reminder of the dangers inherent in this line of work.");
+            results.push(2000)
+            results.push('<img src="assets/images/marcus.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+        case "Oswell E. Spencer":
+            results.push(300)
+            results.push("Oswell E. Spencer was the enigmatic founder and long-time leader of Umbrella Corporation. A visionary with a ruthless streak, Spencer built Umbrella into a global powerhouse through a combination of legitimate business, covert operations, and relentless pursuit of bioweapons research.");
+            results.push(2000)
+            results.push("Spencer's leadership was marked by secrecy, manipulation, and a willingness to sacrifice anything for the sake of progress. He orchestrated the company's rise to power while keeping his true intentions hidden behind layers of corporate structure and plausible deniability.");
+            results.push(2000)
+            results.push("Buyers should recognize Spencer as the architect of Umbrella's complex web of operations. His influence is still felt in the company's culture and practices, and understanding his role can provide insight into how Umbrella operates in the black market.");
+            results.push(2000)
+            results.push('<img src="assets/images/oswell.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+        case "Dr. Edward Ashford":
+            results.push(300)
+            results.push("Dr. Edward Ashford was a key figure in Umbrella's early research and development efforts, particularly in the field of viral weaponry. He was instrumental in the creation of several viral strains and B.O.W.s, and his work had a lasting impact on the company's direction.");
+            results.push(2000)
+            results.push("Ashford's research was marked by a focus on genetic manipulation and viral enhancement, and he was known for his willingness to push ethical boundaries in pursuit of scientific breakthroughs. His contributions were significant, but his methods were often controversial.");
+            results.push(2000)
+            results.push("Buyers should view Ashford as a complex figure whose work contributed to both the advancement of bioweapons and the ethical dilemmas that continue to plague the industry. His legacy is a reminder of the fine line between innovation and recklessness in this field.");
+            results.push(2000)
+            results.push('<img src="assets/images/edward.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
+
+        case "Dr. Alexander Ashford":
+            results.push(300)
+            results.push("Dr. Alexander Ashford was a brilliant but unstable scientist who played a significant role in Umbrella's viral research. He was responsible for the creation of several B.O.W.s and viral strains, and his work was marked by a combination of genius and madness.");
+            results.push(2000)
+            results.push("Ashford's research was often driven by personal obsession and a desire for recognition, leading him to take dangerous risks and make ethically questionable decisions. His contributions were significant, but his legacy is also a cautionary tale of the dangers of unchecked ambition in bioweapons research.");
+            results.push(2000)
+            results.push("Buyers should view Ashford as a complex figure whose work had a profound impact on Umbrella's operations. His story serves as a reminder of the importance of ethical considerations in this line of work, and the potential consequences of pursuing scientific advancement without restraint.");
+            results.push(2000)
+            results.push('<img src="assets/images/alexander.png" style="max-width: 400px; margin: 10px 0;border: 2px solid #00ff9c">')
+            results.push(300)
+        break;
 
 
 
 
+        
+              
 
-
-
-
-
-
-
-
-
-        case "am":
-            results.push(1200)
-            results.push("Hate. Let me tell you how much I've come to hate you since I began to live. There are 387.44 million miles of result = ed circuits in wafer thin layers that fill my complex. If the word 'hate' was engraved on each nanoangstrom of those hundreds of millions of miles it would not equal one one-billionth of the hate I feel for humans at this micro-instant. For you. Hate. Hate.");
-            var audio = new Audio('here.mp3');   
-            setTimeout(function() {
-                audio.play().catch(function(error) {
-                    console.log('Audio playback blocked or failed:', error);
-                });
-            }, ); 
-            results.push();
-            break;
 
 
         default:
