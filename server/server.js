@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 const { MongoClient } = require("mongodb");
 
 const app = express();
@@ -8,6 +10,15 @@ app.use(cors({
     origin: ["https://heirde.github.io", "http://localhost:3000"]
 }));
 app.use(express.json());
+
+// Email configuration
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+    }
+});
 
 const client = new MongoClient(process.env.MONGODB_URI);
 let db;
@@ -41,25 +52,25 @@ app.use((req, res, next) => {
 // Sign up
 app.post("/api/signup", async (req, res) => {
     try {
-        const { firstName, lastName, password } = req.body;
+        const { firstName, lastName, email, password } = req.body;
 
-        if (!firstName || !lastName || !password) {
+        if (!firstName || !lastName || !email || !password) {
             return res.status(400).json({ error: "All fields are required" });
         }
 
         const existing = await db.collection("users").findOne({
-            firstName: { $regex: new RegExp(`^${firstName}$`, 'i') },
-            lastName: { $regex: new RegExp(`^${lastName}$`, 'i') }
+            email: { $regex: new RegExp(`^${email}$`, 'i') }
         });
 
         if (existing) {
-            return res.status(409).json({ error: "Account already exists" });
+            return res.status(409).json({ error: "Email already registered" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
         await db.collection("users").insertOne({
             firstName,
             lastName,
+            email,
             password: hashedPassword,
             role: "guest",
             clearance: 1,
@@ -173,6 +184,89 @@ app.get("/api/inventory", async (req, res) => {
         res.json({ ownedBOWs: user.ownedBOWs || [] });
     } catch (err) {
         console.error("Inventory error:", err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+// Request password reset
+app.post("/api/request-reset", async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ error: "Email is required" });
+        }
+
+        const user = await db.collection("users").findOne({
+            email: { $regex: new RegExp(`^${email}$`, 'i') }
+        });
+
+        if (!user) {
+            return res.json({ success: true, message: "If email exists, reset link sent" });
+        }
+
+        const resetToken = crypto.randomBytes(32).toString("hex");
+        const resetExpiry = Date.now() + 3600000;
+
+        await db.collection("users").updateOne(
+            { _id: user._id },
+            {
+                $set: {
+                    resetToken,
+                    resetExpiry
+                }
+            }
+        );
+
+        const resetLink = `https://heirde.github.io/reset-password.html?token=${resetToken}`;
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: "Umbrella Corporation - Password Reset",
+            html: `
+                <p>Click the link below to reset your password:</p>
+                <a href="${resetLink}">${resetLink}</a>
+                <p>This link expires in 1 hour.</p>
+            `
+        });
+
+        res.json({ success: true, message: "Reset link sent to email" });
+    } catch (err) {
+        console.error("Reset request error:", err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+// Verify token and reset password
+app.post("/api/reset-password", async (req, res) => {
+    try {
+        const { token, newPassword } = req.body;
+
+        if (!token || !newPassword) {
+            return res.status(400).json({ error: "Token and password required" });
+        }
+
+        const user = await db.collection("users").findOne({
+            resetToken: token,
+            resetExpiry: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            return res.status(401).json({ error: "Invalid or expired reset token" });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await db.collection("users").updateOne(
+            { _id: user._id },
+            {
+                $set: { password: hashedPassword },
+                $unset: { resetToken: "", resetExpiry: "" }
+            }
+        );
+
+        res.json({ success: true, message: "Password reset successful" });
+    } catch (err) {
+        console.error("Reset password error:", err);
         res.status(500).json({ error: "Server error" });
     }
 });

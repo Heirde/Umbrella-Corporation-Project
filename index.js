@@ -91,36 +91,45 @@ const response = await fetch("https://umbrella-corporation-project-production.up
     });
 
     document.getElementById("dropdownSignUpBtn").addEventListener("click", async function () {
-    const first = document.getElementById("signUpFirstName").value.trim();
-    const last = document.getElementById("signUpLastName").value.trim();
-    const pass = document.getElementById("signUpPassword").value;
+        const first = document.getElementById("signUpFirstName").value.trim();
+        const last = document.getElementById("signUpLastName").value.trim();
+        const email = document.getElementById("signUpEmail").value.trim();
+        const pass = document.getElementById("signUpPassword").value;
 
-    if (!first || !last || !pass) return;
+        if (!first || !last || !email || !pass) return;
 
-    try {
-        const response = await fetch("https://umbrella-corporation-project-production.up.railway.app/api/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ firstName: first, lastName: last, password: pass })
-        });
+        try {
+            const response = await fetch("https://umbrella-corporation-project-production.up.railway.app/api/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ firstName: first, lastName: last, email, password: pass })
+            });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        if (!response.ok) {
-            alert(data.error);
-            return;
+            if (!response.ok) {
+                alert(data.error);
+                return;
+            }
+
+            localStorage.setItem("firstName", data.firstName);
+            localStorage.setItem("lastName", data.lastName);
+            localStorage.setItem("role", data.role);
+            localStorage.setItem("clearance", data.clearance);
+            loadUser();
+            document.getElementById("profileDropdown").classList.remove("open");
+            
+            // Clear form
+            document.getElementById("signUpFirstName").value = "";
+            document.getElementById("signUpLastName").value = "";
+            document.getElementById("signUpEmail").value = "";
+            document.getElementById("signUpPassword").value = "";
+            document.getElementById("signInForm").style.display = "flex";
+            document.getElementById("signUpForm").style.display = "none";
+
+        } catch (err) {
+            alert("Could not connect to server");
         }
-
-        localStorage.setItem("firstName", data.firstName);
-        localStorage.setItem("lastName", data.lastName);
-        localStorage.setItem("role", data.role);
-        localStorage.setItem("clearance", data.clearance);
-        loadUser();
-        document.getElementById("profileDropdown").classList.remove("open");
-
-    } catch (err) {
-        alert("Could not connect to server");
-    }
     });
 
     document.getElementById("showSignUp").addEventListener("click", function () {
