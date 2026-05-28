@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
@@ -11,7 +13,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Email configuration
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -41,7 +42,6 @@ client.on("close", () => {
     connectDB();
 });
 
-// Middleware to check DB is ready
 app.use((req, res, next) => {
     if (!db) {
         return res.status(503).json({ error: "Database not ready" });
@@ -49,7 +49,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// Sign up
 app.post("/api/signup", async (req, res) => {
     try {
         const { firstName, lastName, email, password } = req.body;
@@ -85,7 +84,6 @@ app.post("/api/signup", async (req, res) => {
     }
 });
 
-// Sign in
 app.post("/api/signin", async (req, res) => {
     try {
         const { firstName, lastName, password } = req.body;
@@ -123,7 +121,6 @@ app.post("/api/signin", async (req, res) => {
     }
 });
 
-// Record a B.O.W. purchase for a signed-in user
 app.post("/api/purchase", async (req, res) => {
     try {
         const { firstName, lastName, bowId, bowLabel, price } = req.body;
@@ -160,7 +157,6 @@ app.post("/api/purchase", async (req, res) => {
     }
 });
 
-// Retrieve the current user's owned B.O.W. inventory
 app.get("/api/inventory", async (req, res) => {
     try {
         const { firstName, lastName } = req.query;
@@ -188,7 +184,6 @@ app.get("/api/inventory", async (req, res) => {
     }
 });
 
-// Request password reset
 app.post("/api/request-reset", async (req, res) => {
     try {
         const { email } = req.body;
@@ -218,15 +213,19 @@ app.post("/api/request-reset", async (req, res) => {
             }
         );
 
-        const resetLink = `https://heirde.github.io/reset-password.html?token=${resetToken}`;
+        const resetLink = `https://heirde.github.io/Umbrella-Corporation-Project/reset-password.html?token=${resetToken}`;
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: email,
             subject: "Umbrella Corporation - Password Reset",
             html: `
-                <p>Click the link below to reset your password:</p>
-                <a href="${resetLink}">${resetLink}</a>
-                <p>This link expires in 1 hour.</p>
+                <div style="background:#000; padding:40px; font-family:Courier New, monospace;">
+                    <h1 style="color:#CC0000;">UMBRELLA CORPORATION</h1>
+                    <p style="color:#ccc;">A password reset request was received for your account.</p>
+                    <p style="color:#ccc;">Click the link below to reset your password. This link expires in 1 hour.</p>
+                    <a href="${resetLink}" style="color:#00ff41;">${resetLink}</a>
+                    <p style="color:#555; margin-top:20px; font-size:12px;">If you did not request this reset, ignore this email.</p>
+                </div>
             `
         });
 
@@ -237,7 +236,6 @@ app.post("/api/request-reset", async (req, res) => {
     }
 });
 
-// Verify token and reset password
 app.post("/api/reset-password", async (req, res) => {
     try {
         const { token, newPassword } = req.body;
@@ -271,7 +269,6 @@ app.post("/api/reset-password", async (req, res) => {
     }
 });
 
-// Get all users (admin only)
 app.get("/api/admin/users", async (req, res) => {
     try {
         const { firstName, lastName } = req.query;
@@ -302,7 +299,6 @@ app.get("/api/admin/users", async (req, res) => {
     }
 });
 
-// Update user role and clearance (admin only)
 app.post("/api/admin/update", async (req, res) => {
     try {
         const { adminFirstName, adminLastName, targetFirstName, targetLastName, role, clearance } = req.body;
