@@ -576,7 +576,7 @@ nav{
 }
 
 .news-sub{
-    font-size: 14px;
+    font-size: 1px;
     color: #888;
     line-height: 1.6;
 }
@@ -591,6 +591,13 @@ nav{
     flex-direction: column;
     gap: 12px;
     margin-bottom: 20px;
+    
+}
+
+.news-cards:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.04);
+    transition: transform 0.6s ease-in-out;
 }
 
 .news-card-date{
