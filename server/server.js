@@ -13,11 +13,24 @@ app.use(cors({
 }));
 app.use(express.json());
 
+if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    console.warn("WARNING: EMAIL_USER and EMAIL_PASSWORD are not set. Password reset emails will fail until these are configured.");
+}
+
 const transporter = nodemailer.createTransport({
     service: "gmail",
+    secure: true,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD
+    }
+});
+
+transporter.verify((error, success) => {
+    if (error) {
+        console.error("Email transporter verification failed:", error);
+    } else {
+        console.log("Email transporter is ready to send messages");
     }
 });
 
@@ -68,7 +81,7 @@ app.post("/api/signup", async (req, res) => {
         const normalizedEmail = normalizeEmail(email);
 
         const existing = await db.collection("users").findOne({
-            email: { $regex: new RegExp(`^${escapeRegex(normalizedEmail)}$`, 'i') }
+            email: { $regex: new RegExp(`^\\s*${escapeRegex(normalizedEmail)}\\s*$`, 'i') }
         });
 
         if (existing) {
@@ -204,7 +217,7 @@ app.post("/api/request-reset", async (req, res) => {
 
         const normalizedEmail = normalizeEmail(email);
         const user = await db.collection("users").findOne({
-            email: { $regex: new RegExp(`^${escapeRegex(normalizedEmail)}$`, 'i') }
+            email: { $regex: new RegExp(`^\\s*${escapeRegex(normalizedEmail)}\\s*$`, 'i') }
         });
 
         if (!user) {
@@ -225,9 +238,9 @@ app.post("/api/request-reset", async (req, res) => {
         );
 
         const resetLink = `https://heirde.github.io/Umbrella-Corporation-Project/reset-password.html?token=${resetToken}`;
-        await transporter.sendMail({
+        const emailInfo = await transporter.sendMail({
             from: process.env.EMAIL_USER,
-            to: email,
+            to: normalizedEmail,
             subject: "Umbrella Corporation - Password Reset",
             html: `
                 <div style="background:#000; padding:40px; font-family:Courier New, monospace;">
@@ -240,6 +253,7 @@ app.post("/api/request-reset", async (req, res) => {
             `
         });
 
+        console.log("Password reset email sent:", emailInfo.messageId, emailInfo.response);
         res.json({ success: true, message: "Reset link sent to email" });
     } catch (err) {
         console.error("Reset request error:", err);
