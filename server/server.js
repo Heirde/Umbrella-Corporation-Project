@@ -24,6 +24,14 @@ const transporter = nodemailer.createTransport({
 const client = new MongoClient(process.env.MONGODB_URI);
 let db;
 
+function escapeRegex(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function normalizeEmail(email) {
+    return String(email || "").trim().toLowerCase();
+}
+
 async function connectDB() {
     try {
         await client.connect();
@@ -57,8 +65,10 @@ app.post("/api/signup", async (req, res) => {
             return res.status(400).json({ error: "All fields are required" });
         }
 
+        const normalizedEmail = normalizeEmail(email);
+
         const existing = await db.collection("users").findOne({
-            email: { $regex: new RegExp(`^${email}$`, 'i') }
+            email: { $regex: new RegExp(`^${escapeRegex(normalizedEmail)}$`, 'i') }
         });
 
         if (existing) {
@@ -69,7 +79,7 @@ app.post("/api/signup", async (req, res) => {
         await db.collection("users").insertOne({
             firstName,
             lastName,
-            email,
+            email: normalizedEmail,
             password: hashedPassword,
             role: "guest",
             clearance: 1,
@@ -192,8 +202,9 @@ app.post("/api/request-reset", async (req, res) => {
             return res.status(400).json({ error: "Email is required" });
         }
 
+        const normalizedEmail = normalizeEmail(email);
         const user = await db.collection("users").findOne({
-            email: { $regex: new RegExp(`^${email}$`, 'i') }
+            email: { $regex: new RegExp(`^${escapeRegex(normalizedEmail)}$`, 'i') }
         });
 
         if (!user) {
